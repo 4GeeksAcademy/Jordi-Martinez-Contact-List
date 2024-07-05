@@ -1,0 +1,25 @@
+.profile-img{
+    border-radius: 50%;
+    width: 80%;
+}
+.container-border{
+    border: 1px solid lightgray
+}
+h5{    
+  font-family: "Montserrat", sans-serif;
+}
+p{    
+  font-family: "Montserrat", sans-serif;
+}
+ul {
+  list-style: none;
+  color: gray;
+  margin-top: 1%;
+}
+ul li{
+  margin-top: 2px;
+}
+.right-icons:hover{
+  color: gray;
+  cursor: pointer;
+}

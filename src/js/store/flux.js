@@ -1,21 +1,21 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			],
+			// demo: [
+			// 	{
+			// 		title: "FIRST",
+			// 		background: "white",
+			// 		initial: "white"
+			// 	},
+			// 	{
+			// 		title: "SECOND",
+			// 		background: "white",
+			// 		initial: "white"
+			// 	}
+			// ],
 			contacts: [],
-			urlBaseContact: "https://playground.4geeks.com/contact/agendas"	
-			
+			urlBaseContact: "https://playground.4geeks.com/contact/agendas"
+
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -41,27 +41,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 
-				
+
 			},
 			getAllContacts: async () => {
 				try {
 					let response = await fetch(`${getStore().urlBaseContact}/JordiMtz/contacts`)
 					let data = await response.json()
 
-					// if (response.status == 404) {
-					// 	createUser();
-					// 	getAllContacts();
-					// } else {
+					if (response.status == 404) {
+						createUser();
+						getActions().getAllContacts();
+					} else {
 
 						setStore({
 							contacts: data.contacts
 						})
-					// }
+					}
 				} catch (error) {
 					console.log(error)
 				}
 			},
-			
+
 			createUser: async () => {
 				try {
 					await fetch(`${getStore().urlBaseContact}/JordiMtz`, {
@@ -96,10 +96,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			
-			putContact: async (id) => {
+
+			putContact: async (contact, id) => {
 				const store = getStore()
 				const { urlBaseContact } = store
+
 
 				try {
 					const response = await fetch(`${urlBaseContact}/JordiMtz/contacts/${id}`, {
@@ -121,8 +122,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error)
 				}
 			},
-			
-			deleteContact: async (id) => {
+
+			deleterContact: async (id) => {
 				try {
 					let response = await fetch(`${getStore().urlBaseContact}/JordiMtz/contacts/${id}`, {
 						method: "DELETE"

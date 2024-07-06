@@ -19,7 +19,7 @@ const AddContact = () => {
 
     const handleSubmit = async () => {
         try {
-            if (contact.name.trim() !== "") {
+            if (contact.name.trim() !== "" && contact.email.trim() !== "" && contact.phone.trim() !== "" && contact.address.trim() !== "") {
 
                 let response = await actions.addContact(contact)
 
@@ -38,6 +38,15 @@ const AddContact = () => {
                     });
                 }
             }
+            
+            else {
+                // alert("Error at saving de new contact")
+
+                Swal.fire({
+                    text: "All paramaters are needed",
+                    icon: "error"
+                });
+            }
         }
         catch (error) {
             console.log(error)
@@ -53,7 +62,7 @@ const AddContact = () => {
 
     const handlePutSubmit = async (id) => {
         try {
-            if (contact.name.trim() !== "") {
+            if (contact.name.trim() !== "" && contact.email.trim() !== "" && contact.phone.trim() !== "" && contact.address.trim() !== "") {
 
                 let response = await actions.putContact(contact, id)
 
@@ -70,6 +79,14 @@ const AddContact = () => {
                         icon: "error"
                     });
                 }
+            }
+            else {
+                // alert("Error at saving de new contact")
+
+                Swal.fire({
+                    text: "All paramaters are needed",
+                    icon: "error"
+                });
             }
         }
         catch (error) {
